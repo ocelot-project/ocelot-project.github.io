@@ -6,7 +6,7 @@ import { rhythm, scale } from "../utils/typography";
 interface FooterQuery {
     site: {
         siteMetadata: {
-            siteRepo
+            siteRepo: string,
         }
     }
 }
@@ -47,7 +47,7 @@ const useStyles = createUseStyles({
 const Footer: React.FC = () => {
     const theme = useTheme();
     const classes = useStyles({theme});
-    const data = useStaticQuery<HeaderQuery>(graphql`
+    const data = useStaticQuery<FooterQuery>(graphql`
         query FooterQuery {
             site {
                 siteMetadata {
