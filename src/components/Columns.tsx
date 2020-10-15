@@ -6,6 +6,7 @@ const useStyles = createUseStyles({
     columns: {
         display: "flex",
         justifyContent: "space-evenly",
+        flexWrap: "wrap",
         "& > *": {
             flex: 1,
             padding: {

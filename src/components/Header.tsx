@@ -64,7 +64,7 @@ const Header: React.FC = () => {
     const [randomQuote, setRandomQuote] = React.useState("");
 
     React.useEffect(() => {
-        setRandomQuote(lispify(fortune()));
+        setRandomQuote(`'${lispify(fortune())}`);
     }, []);
 
     return (
@@ -73,7 +73,7 @@ const Header: React.FC = () => {
                 <div>
                     <a href="">
                     <h1 className={classes.title}>{" "}&lambda; {data.site.siteMetadata.project}{" "}</h1>
-                    <span className={classes.quote}>'{randomQuote}</span>
+                    <span className={classes.quote}>{randomQuote}</span>
 </a>
                 </div>
                 <Columns>
