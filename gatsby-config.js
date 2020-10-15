@@ -5,7 +5,7 @@ module.exports = {
         project: "Ocelot",
         description: "The Ocelot Lisp Machine-inspired operating system",
         projectRepo: "https://github.com/ocelot-project/ocelot",
-        siteRepo: "https://github.com/ocelot-project/ocelot-site",
+        siteRepo: "https://github.com/ocelot-project/ocelot-project.github.io",
     },
     plugins: [
         {
