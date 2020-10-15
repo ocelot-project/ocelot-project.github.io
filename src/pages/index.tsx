@@ -1,10 +1,24 @@
 import React from "react";
+import { graphql } from "gatsby";
 import Page from "../components/Page";
 import Section from "../components/Section";
 import Columns from "../components/Columns";
 import { rhythm } from "../utils/typography";
 
-const IndexRoute: React.FC = () => {
+interface IndexQuery {
+    site: {
+        siteMetadata: {
+            project: string,
+            projectRepo: string,
+        }
+    },
+}
+
+interface IndexProps {
+    data: IndexQuery,
+}
+
+const IndexRoute: React.FC<IndexProps> = ({ data }) => {
     return (
         <Page>
             <Section banner title={<span>(define-operating-system ocelot &#8230;)</span>}>
@@ -58,7 +72,7 @@ const IndexRoute: React.FC = () => {
                             As a user with wheel (<code>sudo</code>) access, clone Ocelot into your home directory:
         <p>
             <code>
-                git clone https://github.com/unjordy/ocelot ~/ocelot
+                git clone {data.site.siteMetadata.projectRepo} ~/ocelot
             </code>
         </p>
                         </li>
@@ -98,5 +112,15 @@ const IndexRoute: React.FC = () => {
         </Page>
     );
 }
+
+export const query = graphql`
+    query IndexQuery {
+        site {
+            siteMetadata {
+                projectRepo
+            }
+        }
+    }
+`;
 
 export default IndexRoute;
