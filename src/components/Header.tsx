@@ -4,12 +4,13 @@ import { createUseStyles, useTheme } from "react-jss";
 import Columns from "./Columns";
 import { rhythm, scale } from "../utils/typography";
 import { fortune, lispify } from "../utils/text";
+import { Project } from "../utils/queries";
 
 interface HeaderQuery {
     site: {
         siteMetadata: {
-            project: string,
-            projectRepo: string,
+            project: Project,
+            subprojects: [Project],
         }
     }
 }
@@ -55,8 +56,14 @@ const Header: React.FC = () => {
         query HeaderQuery {
             site {
                 siteMetadata {
-                    project
-                    projectRepo
+                    project {
+                        name
+                        repo
+                    }
+                    subprojects {
+                        name
+                        repo
+                    }
                 }
             }
         }
@@ -72,15 +79,21 @@ const Header: React.FC = () => {
             <div>
                 <div>
                     <a href="">
-                    <h1 className={classes.title}>{" "}&lambda; {data.site.siteMetadata.project}{" "}</h1>
+                    <h1 className={classes.title}>{" "}&lambda; {data.site.siteMetadata.project.name}{" "}</h1>
                     <span className={classes.quote}>{randomQuote}</span>
 </a>
                 </div>
-                <Columns>
-<a href={data.site.siteMetadata.projectRepo}>
-                    'git
-                    </a>
-                </Columns>
+                <nav>
+                    <Columns>
+                        {data.site.siteMetadata.subprojects.map(subproject => (
+                        <a id={subproject.name} href={subproject.repo}>
+                            '{subproject.name}
+                        </a>))}
+                        <a href={data.site.siteMetadata.project.repo}>
+                            'git
+                        </a>
+                    </Columns>
+                </nav>
             </div>
         </header>
     );

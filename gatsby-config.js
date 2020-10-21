@@ -2,9 +2,18 @@ const theme = require("./src/utils/theme.js");
 
 module.exports = {
     siteMetadata: {
-        project: "Ocelot",
-        description: "The Ocelot Lisp Machine-inspired operating system",
-        projectRepo: "https://github.com/ocelot-project/ocelot",
+        project: {
+            name: "Ocelot",
+            description: "The Ocelot Lisp Machine-inspired operating system",
+            repo: "https://github.com/ocelot-project/ocelot",
+        },
+        subprojects: [
+            {
+                name: "olman",
+                description: "Ocelot Login Manager",
+                repo: "https://github.com/ocelot-project/olman",
+            },
+        ],
         siteRepo: "https://github.com/ocelot-project/ocelot-project.github.io",
     },
     plugins: [

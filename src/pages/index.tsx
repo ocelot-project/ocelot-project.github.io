@@ -4,12 +4,12 @@ import Page from "../components/Page";
 import Section from "../components/Section";
 import Columns from "../components/Columns";
 import { rhythm } from "../utils/typography";
+import { Project } from "../utils/queries";
 
 interface IndexQuery {
     site: {
         siteMetadata: {
-            project: string,
-            projectRepo: string,
+            project: Project,
         }
     },
 }
@@ -72,7 +72,7 @@ const IndexRoute: React.FC<IndexProps> = ({ data }) => {
                             As a user with wheel (<code>sudo</code>) access, clone Ocelot into your home directory:
         <p>
             <code>
-                git clone {data.site.siteMetadata.projectRepo} ~/ocelot
+                git clone {data.site.siteMetadata.project.repo} ~/ocelot
             </code>
         </p>
                         </li>
@@ -117,7 +117,9 @@ export const query = graphql`
     query IndexQuery {
         site {
             siteMetadata {
-                projectRepo
+                project {
+                    repo
+                }
             }
         }
     }
